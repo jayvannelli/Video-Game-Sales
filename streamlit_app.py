@@ -44,7 +44,7 @@ def main():
         publisher = st.selectbox("Select publisher", options=df['Publisher'].sort_values().unique())
         publisher_df = df.loc[df['Publisher'] == publisher]
 
-        st.dataframe(genre_df)
+        st.dataframe(publisher_df)
 
 
 if __name__ == "__main__":
