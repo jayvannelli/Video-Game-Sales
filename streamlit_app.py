@@ -18,9 +18,22 @@ def main():
 
     st.write("---")
 
-    platform_tab, genre_tab, publisher_tab = st.tabs(
-        ["Platform", "Genre", "Publisher"]
+    overview_tab, platform_tab, genre_tab, publisher_tab = st.tabs(
+        ["Overview", "Platform", "Genre", "Publisher"]
     )
+
+    with overview_tab:
+        st.subheader("Overview")
+
+        st.bar_chart(df, x="Year", y="Global_Sales")
+
+        left_column, right_column = st.columns(2)
+        with left_column:
+            st.write("Global sales by genre")
+            st.bar_chart(df, x="Genre", y="Global_Sales")
+        with right_column:
+            st.write("Global sales by platform")
+            st.bar_chart(df, x="Platform", y="Global_Sales")
 
     with platform_tab:
         st.subheader("Platform")
