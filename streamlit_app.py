@@ -41,6 +41,9 @@ def main():
         platform = st.selectbox("Select platform", options=df['Platform'].sort_values().unique())
         platform_df = df.loc[df['Platform'] == platform]
 
+        st.bar_chart(platform_df, x="Year", y="Global_Sales")
+        st.bar_chart(platform_df, x="Genre", y="Global_Sales")
+
         st.dataframe(platform_df)
 
     with genre_tab:
@@ -48,6 +51,9 @@ def main():
 
         genre = st.selectbox("Select genre", options=df['Genre'].sort_values().unique())
         genre_df = df.loc[df['Genre'] == genre]
+
+        st.bar_chart(genre_df, x="Year", y="Global_Sales")
+        st.bar_chart(genre_df, x="Platform", y="Global_Sales")
 
         st.dataframe(genre_df)
 
