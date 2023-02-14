@@ -5,7 +5,8 @@ from streamlit_extras.dataframe_explorer import dataframe_explorer
 
 
 def main():
-    st.title("Video Game Sales | Kaggle")
+    st.set_page_config("Video Game Sales", page_icon="🕹️", layout="wide")
+    st.title("Video Game Sales | Kaggle | Streamlit")
 
     df = get_data()
 
@@ -25,6 +26,7 @@ def main():
     with overview_tab:
         st.subheader("Overview")
 
+        st.write("Global sales over time")
         st.bar_chart(df, x="Year", y="Global_Sales")
 
         left_column, right_column = st.columns(2)
@@ -34,6 +36,23 @@ def main():
         with right_column:
             st.write("Global sales by platform")
             st.bar_chart(df, x="Platform", y="Global_Sales")
+
+        st.write("---")
+        st.subheader("Sales by region")
+
+        col1, col2, col3, col4 = st.columns(4)
+        with col1:
+            st.write("North America")
+            st.bar_chart(df, x="Year", y="NA_Sales")
+        with col2:
+            st.write("Europe")
+            st.bar_chart(df, x="Year", y="EU_Sales")
+        with col3:
+            st.write("Japan")
+            st.bar_chart(df, x="Year", y="JP_Sales")
+        with col4:
+            st.write("Other")
+            st.bar_chart(df, x="Year", y="Other_Sales")
 
     with platform_tab:
         st.subheader("Platform")
