@@ -2,6 +2,7 @@ import streamlit as st
 from src.data import get_data
 
 from streamlit_extras.dataframe_explorer import dataframe_explorer
+from streamlit_extras.colored_header import colored_header
 
 
 def main():
@@ -24,7 +25,9 @@ def main():
     )
 
     with overview_tab:
-        st.subheader("Overview")
+        colored_header(label="Overview",
+                       description="Global sales over time, and broken down by genre & platform.",
+                       color_name="blue-70")
 
         st.write("Global sales over time")
         st.bar_chart(df, x="Year", y="Global_Sales")
@@ -38,7 +41,9 @@ def main():
             st.bar_chart(df, x="Platform", y="Global_Sales")
 
         st.write("---")
-        st.subheader("Sales by region")
+        colored_header(label="Sales by region",
+                       description="Sales over time broken down by region.",
+                       color_name="red-70")
 
         col1, col2, col3, col4 = st.columns(4)
         with col1:
@@ -55,7 +60,9 @@ def main():
             st.bar_chart(df, x="Year", y="Other_Sales")
 
     with platform_tab:
-        st.subheader("Platform")
+        colored_header(label="Platform",
+                       description="Best selling video games by platform.",
+                       color_name="orange-70")
 
         platform = st.selectbox("Select platform", options=df['Platform'].sort_values().unique())
         platform_df = df.loc[df['Platform'] == platform]
@@ -66,7 +73,9 @@ def main():
         st.dataframe(platform_df)
 
     with genre_tab:
-        st.subheader("Genre")
+        colored_header(label="Genre",
+                       description="Best selling video games by genre.",
+                       color_name="blue-green-70")
 
         genre = st.selectbox("Select genre", options=df['Genre'].sort_values().unique())
         genre_df = df.loc[df['Genre'] == genre]
@@ -77,7 +86,9 @@ def main():
         st.dataframe(genre_df)
 
     with publisher_tab:
-        st.subheader("Publisher")
+        colored_header(label="Publisher",
+                       description="Best selling video games by publisher.",
+                       color_name="violet-70")
 
         publisher = st.selectbox("Select publisher", options=df['Publisher'].sort_values().unique())
         publisher_df = df.loc[df['Publisher'] == publisher]
