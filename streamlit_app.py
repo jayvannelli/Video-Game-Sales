@@ -70,6 +70,23 @@ def main():
         st.bar_chart(platform_df, x="Year", y="Global_Sales")
         st.bar_chart(platform_df, x="Genre", y="Global_Sales")
 
+        st.write("---")
+        st.subheader(f"{platform} Sales by region")
+
+        col1, col2, col3, col4 = st.columns(4)
+        with col1:
+            st.write("North America")
+            st.bar_chart(platform_df, x="Year", y="NA_Sales")
+        with col2:
+            st.write("Europe")
+            st.bar_chart(platform_df, x="Year", y="EU_Sales")
+        with col3:
+            st.write("Japan")
+            st.bar_chart(platform_df, x="Year", y="JP_Sales")
+        with col4:
+            st.write("Other")
+            st.bar_chart(platform_df, x="Year", y="Other_Sales")
+
         st.dataframe(platform_df)
 
     with genre_tab:
@@ -82,6 +99,23 @@ def main():
 
         st.bar_chart(genre_df, x="Year", y="Global_Sales")
         st.bar_chart(genre_df, x="Platform", y="Global_Sales")
+
+        st.write("---")
+        st.subheader(f"{genre} Sales by region")
+
+        col1, col2, col3, col4 = st.columns(4)
+        with col1:
+            st.write("North America")
+            st.bar_chart(genre_df, x="Year", y="NA_Sales")
+        with col2:
+            st.write("Europe")
+            st.bar_chart(genre_df, x="Year", y="EU_Sales")
+        with col3:
+            st.write("Japan")
+            st.bar_chart(genre_df, x="Year", y="JP_Sales")
+        with col4:
+            st.write("Other")
+            st.bar_chart(genre_df, x="Year", y="Other_Sales")
 
         st.dataframe(genre_df)
 
