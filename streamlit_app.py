@@ -67,11 +67,14 @@ def main():
         platform = st.selectbox("Select platform", options=df['Platform'].sort_values().unique())
         platform_df = df.loc[df['Platform'] == platform]
 
+        st.write(f"Global {platform} sales over time")
         st.bar_chart(platform_df, x="Year", y="Global_Sales")
+
+        st.write(f"Global {platform} sales by genre")
         st.bar_chart(platform_df, x="Genre", y="Global_Sales")
 
         st.write("---")
-        st.subheader(f"{platform} Sales by region")
+        st.subheader(f"{platform} sales by region")
 
         col1, col2, col3, col4 = st.columns(4)
         with col1:
@@ -97,11 +100,14 @@ def main():
         genre = st.selectbox("Select genre", options=df['Genre'].sort_values().unique())
         genre_df = df.loc[df['Genre'] == genre]
 
+        st.write(f"Global {genre} sales over time")
         st.bar_chart(genre_df, x="Year", y="Global_Sales")
+
+        st.write(f"Global {genre} sales by platform")
         st.bar_chart(genre_df, x="Platform", y="Global_Sales")
 
         st.write("---")
-        st.subheader(f"{genre} Sales by region")
+        st.subheader(f"{genre} sales by region")
 
         col1, col2, col3, col4 = st.columns(4)
         with col1:
@@ -126,6 +132,31 @@ def main():
 
         publisher = st.selectbox("Select publisher", options=df['Publisher'].sort_values().unique())
         publisher_df = df.loc[df['Publisher'] == publisher]
+
+        st.write(f"Global {publisher} sales by platform")
+        st.bar_chart(publisher_df, x="Platform", y="Global_Sales")
+
+        st.write(f"Global {publisher} sales by genre")
+        st.bar_chart(publisher_df, x="Genre", y="Global_Sales")
+
+        st.write("---")
+        st.subheader(f"{publisher} sales by region")
+
+        col1, col2, col3, col4 = st.columns(4)
+        with col1:
+            st.write("North America")
+            st.bar_chart(publisher_df, x="Year", y="NA_Sales")
+        with col2:
+            st.write("Europe")
+            st.bar_chart(publisher_df, x="Year", y="EU_Sales")
+        with col3:
+            st.write("Japan")
+            st.bar_chart(publisher_df, x="Year", y="JP_Sales")
+        with col4:
+            st.write("Other")
+            st.bar_chart(publisher_df, x="Year", y="Other_Sales")
+
+        st.write("---")
 
         st.dataframe(publisher_df)
 
