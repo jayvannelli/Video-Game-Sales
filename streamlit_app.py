@@ -90,7 +90,8 @@ def main():
             st.write("Other")
             st.bar_chart(platform_df, x="Year", y="Other_Sales")
 
-        st.dataframe(platform_df)
+        with st.expander(f"{platform} DataFrame"):
+            st.dataframe(platform_df)
 
     with genre_tab:
         colored_header(label="Genre",
@@ -123,7 +124,8 @@ def main():
             st.write("Other")
             st.bar_chart(genre_df, x="Year", y="Other_Sales")
 
-        st.dataframe(genre_df)
+        with st.expander(f"{genre} DataFrame"):
+            st.dataframe(genre_df)
 
     with publisher_tab:
         colored_header(label="Publisher",
@@ -158,7 +160,8 @@ def main():
 
         st.write("---")
 
-        st.dataframe(publisher_df)
+        with st.expander(f"{publisher} DataFrame"):
+            st.dataframe(genre_df)
 
 
 if __name__ == "__main__":
