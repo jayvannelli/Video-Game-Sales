@@ -1,8 +1,13 @@
 import streamlit as st
-from src.data import get_data
+import pandas as pd
 
 from streamlit_extras.dataframe_explorer import dataframe_explorer
 from streamlit_extras.colored_header import colored_header
+
+
+@st.cache_data
+def get_data() -> pd.DataFrame:
+    return pd.read_csv("data/vgsales.csv")
 
 
 def main():
@@ -134,6 +139,9 @@ def main():
 
         publisher = st.selectbox("Select publisher", options=df['Publisher'].sort_values().unique())
         publisher_df = df.loc[df['Publisher'] == publisher]
+
+        st.write(f"Global {publisher} sales over time")
+        st.bar_chart(publisher_df, x="Year", y="Global_Sales")
 
         st.write(f"Global {publisher} sales by platform")
         st.bar_chart(publisher_df, x="Platform", y="Global_Sales")
