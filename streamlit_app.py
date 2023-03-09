@@ -169,7 +169,7 @@ def main():
         st.write("---")
 
         with st.expander(f"{publisher} DataFrame"):
-            st.dataframe(genre_df)
+            st.dataframe(publisher_df)
 
 
 if __name__ == "__main__":
